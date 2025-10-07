@@ -1,31 +1,31 @@
+import 'package:agiroapp/Classes.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'Home.dart'; 
 import 'Jogo.dart'; 
 import 'Suporte.dart';
+
 void main() {
-  runApp(const NPC());
+  runApp(const NPCPAGE());
 }
 
-class NPC extends StatelessWidget {
-  const NPC({super.key});
+class NPCPAGE extends StatelessWidget {
+  const NPCPAGE({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'Personagens  ',
+      home: const MyHomePage(title: 'Personagens'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
 
   final String title;
 
@@ -34,19 +34,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+ int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
 
-
     return Scaffold(
-      appBar: AppBar(
-
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
- 
-        title: Text(widget.title),
-      ),
-    body: Center(
+      body: Scrollbar(
+        thumbVisibility: true,
+        child: Center(
     child: Container(  // Container que serve para criar o backoground
       decoration: BoxDecoration(
       image: DecorationImage(image: AssetImage("assets/PersonagensBackground.png"),
@@ -62,13 +58,12 @@ class _MyHomePageState extends State<MyHomePage> {
      Column( // Coluna do texto (serve para delimitar o espaço que o texto pode correr)
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-                      SizedBox(
+            SizedBox(
                 width: 300,
                 child: Column(
-                spacing: 60,
+                spacing: 10,
                 children: [
                 Column(
-                  spacing: 20,
                   children: [  
                 Text(
                  style: TextStyle(
@@ -76,9 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontWeight: FontWeight.bold,
                  color: Colors.white,
                  ),
-                 "PERSONAGENS"),],
+                 "JOGO"),],
                 ),
-
                 Column(
                   spacing: 2,
                   children: [
@@ -88,31 +82,94 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontWeight: FontWeight.bold,
                  color: Colors.white,
                  ),
-                 "Personagens"),
+                 "Jogabilidade"),
+                 Text(
+                 textAlign: TextAlign.justify,
+                 style: TextStyle(
+                fontSize: 8,
+                color: Colors.white,
+                ),
+                " " "LOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUM."
+                ),
                                  Text(
                  style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                 color: Colors.white,
-                 ),
-                 "Principais"),
-
-
-            /*  CarouselSlider(
-              options: CarouselOptions(
-              ),
-              //items:personagens.map((item) => Container(
-              margin: EdgeInsets.all(8.0),
-            )).toList(),
-            ),
-        */
-                Text(
-                style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
                  color: Colors.white,
                  ),
-                 "Criaturas"),
+                 "Itens"),
+                                  Text(
+                 textAlign: TextAlign.justify,
+                 style: TextStyle(
+                fontSize: 8,
+                color: Colors.white,
+                ),
+                " " "LOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUM."
+                ),
+                                 Text(
+                 style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                 color: Colors.white,
+                 ),
+                 "Áreas"),
+            CarouselSlider( options: CarouselOptions(
+            viewportFraction: 0.6,
+            enlargeCenterPage: true,
+            enableInfiniteScroll: true,
+            autoPlay: true,
+            onPageChanged:(index, reason){
+              setState((){
+               currentIndex = index;
+              });
+            },
+          ),
+            items:areas.map((item) => Container(
+              height: 800,
+              width: 800,
+              decoration: BoxDecoration(
+              border: BoxBorder.all(color: Colors.red)
+              ),
+              margin: EdgeInsets.all(8.0),
+                child: Column(   
+                  children: [
+                 Row(
+                  children: [
+                Image.asset(
+                  width: 100,
+                  height: 100,
+                  scale: 2,
+                  item.imagem,
+                ),
+                SizedBox(
+                  width: 60,
+                  height: 100,
+                  child: Text(
+                  textAlign: TextAlign.justify,
+                  item.conteudo,
+                  style: TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                  ),),
+                )
+                  ],
+                 ),
+                  Text(
+                  item.nome,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                  color: Colors.white,
+                  ),)
+                  
+                ],
+                )
+            )
+            ).toList(),
+               ),
+               DotsIndicator(
+              dotsCount: areas.length,
+              position: currentIndex.toDouble(),
+            ),
                   ],
                 ),
           ],
@@ -120,7 +177,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
           ],
         ),
-// ------------------------------------------------ BUTTONS  ------------------------------------------------ 
+
+
         Column( 
               children: [
               Container( // CONTAINER DOS BOTÕES
@@ -188,7 +246,8 @@ class _MyHomePageState extends State<MyHomePage> {
           child: FloatingActionButton(
                onPressed: () {
                 Navigator.push(context,
-                MaterialPageRoute(builder: (context) => NPC()));
+                MaterialPageRoute(builder: (context) => NPCPAGE ()),
+                );
             },
           child: Row(
           spacing: 4,
@@ -235,6 +294,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
       )
       ),
+      ),
+      
     );
   }
 }

@@ -1,5 +1,7 @@
+import 'package:agiroapp/Classes.dart';
 import 'package:flutter/material.dart';
-// import 'Classes.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'Home.dart'; 
 import 'NPC.dart'; 
 import 'Suporte.dart';
@@ -16,10 +18,8 @@ class Jogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Jogo  ',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
       home: const MyHomePage(title: 'Jogo'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -38,10 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-  // var screensize = MediaQuery.of(context).size;
-
+ int currentIndex = 0;
     return Scaffold(
-      body: Center(
+      body: Scrollbar(
+      thumbVisibility: true,
+      child: SingleChildScrollView
+      (
     child: Container(  // Container que serve para criar o backoground
       decoration: BoxDecoration(
       image: DecorationImage(image: AssetImage("assets/JogoBackground.png"),
@@ -82,6 +84,14 @@ class _MyHomePageState extends State<MyHomePage> {
                  color: Colors.white,
                  ),
                  "Jogabilidade"),
+                 Text(
+                 textAlign: TextAlign.justify,
+                 style: TextStyle(
+                fontSize: 8,
+                color: Colors.white,
+                ),
+                " " "LOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUM."
+                ),
                                  Text(
                  style: TextStyle(
                 fontSize: 25,
@@ -89,6 +99,14 @@ class _MyHomePageState extends State<MyHomePage> {
                  color: Colors.white,
                  ),
                  "Itens"),
+                                  Text(
+                 textAlign: TextAlign.justify,
+                 style: TextStyle(
+                fontSize: 8,
+                color: Colors.white,
+                ),
+                " " "LOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUM."
+                ),
                                  Text(
                  style: TextStyle(
                 fontSize: 25,
@@ -96,6 +114,66 @@ class _MyHomePageState extends State<MyHomePage> {
                  color: Colors.white,
                  ),
                  "Áreas"),
+               CarouselSlider( options: CarouselOptions(
+            viewportFraction: 0.6,
+            enlargeCenterPage: true,
+            enableInfiniteScroll: true,
+            autoPlay: true,
+            onPageChanged:(index, reason){
+              setState((){
+               currentIndex = index;
+              });
+            },
+          ),
+            items:areas.map((item) => Container(
+              height: 800,
+              width: 800,
+              decoration: BoxDecoration(
+              border: BoxBorder.all(color: Colors.red)
+              ),
+              margin: EdgeInsets.all(8.0),
+                child: Column(   
+                  children: [
+                 Row(
+                  children: [
+                Image.asset(
+                  width: 100,
+                  height: 100,
+                  scale: 2,
+                  item.imagem,
+                ),
+                SizedBox(
+                  width: 60,
+                  height: 100,
+                  child: Text(
+                  textAlign: TextAlign.justify,
+                  item.conteudo,
+                  style: TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                  ),),
+                )
+                  ],
+                 ),
+                  Text(
+                  item.nome,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                  color: Colors.white,
+                  ),)
+                  
+                ],
+)
+    
+            )
+
+            ).toList(),
+
+               ),
+               DotsIndicator(
+              dotsCount: areas.length,
+              position: currentIndex.toDouble(),
+            ),
                   ],
                 ),
           ],
@@ -103,6 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
           ],
         ),
+
 
         Column( 
               children: [
@@ -171,7 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: FloatingActionButton(
                onPressed: () {
                 Navigator.push(context,
-                MaterialPageRoute(builder: (context) => NPC()));
+                MaterialPageRoute(builder: (context) => NPCPAGE()));
             },
           child: Row(
           spacing: 4,
@@ -218,6 +297,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
       )
       ),
+      ),
+      
     );
   }
 }

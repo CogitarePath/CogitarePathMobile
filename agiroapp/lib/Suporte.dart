@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Home.dart';
 import 'Jogo.dart';
 import 'NPC.dart';
+import 'Classes.dart';
 
 void main() {
   runApp(const Suporte());
@@ -14,11 +15,9 @@ class Suporte extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+     debugShowCheckedModeBanner: false,
+      title: 'Suporte',
+      home: const MyHomePage(title: 'Suporte'),
     );
   }
 }
@@ -35,10 +34,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+final PaginaSuporte SuporteClass = PaginaSuporte("","");
+final TextEditingController mensagemcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    Suporte suporte = Suporte();
     return Scaffold(
       appBar: AppBar(
 
@@ -55,7 +55,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       width: 400,
       height: 700,
-    child: Column(
+    child: Stack(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child:  Column(
       mainAxisAlignment: MainAxisAlignment.end,
       spacing: 20,
       children: [
@@ -165,6 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   child:TextField(
                     style: TextStyle(color: Colors.white, fontSize: 15), // Fonte branca
+                    controller: mensagemcontroller,
                     decoration: InputDecoration(
                       hintText: "Digite sua mensagem...",
                       hintStyle: TextStyle(  
@@ -174,6 +179,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                  ),
                  ),
+                 IconButton(
+                  icon: Icon(Icons.send),
+                  onPressed: ()
+                 {
+                  String mensagem = mensagemcontroller.text;
+
+                  SuporteClass.enviar(mensagem);
+                 }
+                 )
                   ],
                   ),
 
@@ -269,7 +283,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: FloatingActionButton(
                onPressed: () {
                 Navigator.push(context,
-                MaterialPageRoute(builder: (context) => NPC()));
+                MaterialPageRoute(builder: (context) => NPCPAGE()));
             },
           child: Row(
           spacing: 4,
@@ -313,6 +327,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
       ],
     ),
+        ),
+     
+      ],
+    ),
+    
+    
 
       )
       ),

@@ -9,12 +9,10 @@ this.imagens
 
 // CLASSE DESCRICAO - PASSA ATRIBUTOS EM COMUM PARA OUTRAS CLASSES
 class Descricao{
-final String titulo;
 final String nome;
 final String imagem;
 final String conteudo;
  Descricao(
-  this.titulo,
   this.nome,
   this.imagem,
   this.conteudo,
@@ -25,48 +23,58 @@ final String conteudo;
 class DescricaoPersonagem extends Descricao{
 final String descAparencia;
 final String personalidade;
+
  DescricaoPersonagem(
- titulo, 
  nome,
  imagem,
  conteudo,
  this.descAparencia,
  this.personalidade,
- ) : super (titulo, nome, imagem, conteudo);
+ ) : super (nome, imagem, conteudo);
 }
+
+
+List <DescricaoPersonagem> personagens = [
+DescricaoPersonagem("Luiza Koga", "CG_LOGO.png", "Éh", "Dois", "Sim"),
+DescricaoPersonagem("Luiza ASAADSSA", "CG_LOGO.png", "GDSA", "FA", "SiASDm"),
+];
 
 // CLASSE DESCRICAOMONSTRO - HERDA DE DESCRICAO
 class DescricaoMonstro extends Descricao{
   
 final String descAparencia;
 final String personalidade;
+
 DescricaoMonstro(
-titulo, 
 nome,
 imagem,
 conteudo,
 this.descAparencia,
 this.personalidade,
-) : super (titulo, nome, imagem, conteudo);
+) : super (nome, imagem, conteudo);
 }
+
 
 // CLASSE DESCRICAOJOGABILIDADE - HERDA DE DESCRICAO
 
 class DescricaoJogabilidade extends Descricao{
   
-final List<String> mecanicas;
+final String mecanicas;
 final String videos;
 
 DescricaoJogabilidade(
-titulo, 
 nome,
 imagem,
 conteudo,
 this.mecanicas,
 this.videos,
-) : super (titulo, nome, imagem, conteudo);
+) : super (nome, imagem, conteudo);
 }
 
+List <DescricaoJogabilidade> areas = [
+DescricaoJogabilidade("Área Residencial", "CG_LOGO.png", "Uma área residencial", "", ""),
+DescricaoJogabilidade("Área S", "CG_Icon_White.png", "Uma área residencial", "", ""),
+];
 
 // CLASSE DESCRICAONARRATIVA - HERDA DE DESCRICAO
 
@@ -74,36 +82,31 @@ class DescricaoNarrativa extends Descricao{
 final String historia;
 
 DescricaoNarrativa(
-titulo, 
 nome,
 imagem,
 conteudo,
 this.historia,
-) : super (titulo, nome, imagem, conteudo);
+) : super (nome, imagem, conteudo);
 }
 
-// CLASSE SUPORTE - HERDA DE DESCRICAO
-class Suporte extends Descricao{
+// CLASSE SUPORTE - NÃO HERDA DE DESCRICAO
+class PaginaSuporte {
 final String email;
 final String mensagem;
-Suporte(
- titulo, 
- nome,
- imagem,
- historia,
+PaginaSuporte( 
 this.email,
 this.mensagem,
-)  : super (titulo, nome, imagem, historia);
+);
 
 // MÉTODO PARA LIMPAR A CAIXA DE TEXTO E RETORNAR UMA MENSAGEM QUANDO CLICADO UM BOTÃO ESPECÍFICO
-enviar(String Mensagem) {
-if(Mensagem.isNotEmpty){
-Mensagem = "";
-return "Mensagem enviada. Aguarde pelo retorno.";
- }
- }
-} 
-
+String enviar(String mensagem) {
+  if (mensagem.isNotEmpty) {
+    return "Mensagem enviada. Aguarde pelo retorno.";
+  } else {
+    return "Digite uma mensagem antes de enviar.";
+  }
+}
+}
 
 // MÉTODO PARA ABRIR PAGINAS FORA DO APP - TALVEZ TENHA DE SER RETIRADO
 Future <void> AbrirPagina(String url) async{

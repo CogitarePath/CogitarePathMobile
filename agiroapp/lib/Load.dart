@@ -1,5 +1,7 @@
+import 'dart:async';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:flutter/material.dart';
-// import 'Classes.dart';
+import 'Home.dart';
 
 void main() {
   runApp(const Load());
@@ -8,15 +10,12 @@ void main() {
 class Load extends StatelessWidget {
   const Load({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Loading',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Loading'),
+      title: 'Projeto A.G.I.R.O.',
+      home: const MyHomePage(title: 'Projeto A.G.I.R.O.'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -31,36 +30,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
-  // var screensize = MediaQuery.of(context).size;
+    void iniciar() {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+    }
+
+    Timer(const Duration(seconds: 15), iniciar);
 
     return Scaffold(
       body: Center(
-    child: Container(  // Container que serve para criar o backoground
-      decoration: BoxDecoration(
-      image: DecorationImage(image: AssetImage("assets/Loading_Background.png"),
-      fit: BoxFit.fill,   
-      ),
-      ),
-      width: 400,
-      height: 700,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      spacing: 20,
-      children: [
-     Column( // Coluna do texto (serve para delimitar o espaço que o texto pode correr)
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-           
-          ] 
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/Loading_Background.png"),
+              fit: BoxFit.fill,
+            ),
           ),
-      ],
-    ),
-
-      )
+          width: 400,
+          height: 700,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 300),     
+              LoadingAnimationWidget.hexagonDots(
+                color: const Color.fromARGB(255, 246, 5, 214),
+                size: 50,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
