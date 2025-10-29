@@ -26,14 +26,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/Loading_Background.png
-    - assets/HomeBackground.png
-    - assets/CG_LOGO.png
-    - assets/CG_Icon_Black.png
-    - assets/CG_Icon_White.png
-    - assets/ButtonsBackground.png
-    - assets/JogoBackground.png
-    - assets/PersonagensBackground.png
-    - assets/SuporteBackground.png
+  assets: 
+    - assets/
 
