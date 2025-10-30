@@ -37,7 +37,29 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset("assets/SuporteBackground.png"),
+            Stack(
+              alignment: AlignmentDirectional.center,
+              children: <Widget>[
+                Image.asset("assets/SuporteBackground.png"),
+                Text(
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                  "SUPORTE",
+                ),
+                Positioned(
+                  top: 20,
+                  left: 20,
+                  child: Image(
+                    width: 50,
+                    height: 50,
+                    image: AssetImage("assets/CG_Icon_White.png"),
+                  ),
+                ),
+              ],
+            ),
             Align(
               alignment: Alignment.center,
               child: Column(

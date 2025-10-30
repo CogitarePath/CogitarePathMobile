@@ -45,23 +45,29 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               children: <Widget>[
                 Stack(
+                  alignment: AlignmentDirectional.center,
                   children: <Widget>[
                     Image.asset("assets/JogoBackground2.png"),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Center(
-                        child: Text(
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                          "JOGO",
-                        ),
+                    Text(
+                      style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      "JOGO",
+                    ),
+                    Positioned(
+                      top: 20,
+                      left: 20,
+                      child: Image(
+                        width: 50,
+                        height: 50,
+                        image: AssetImage("assets/CG_Icon_White.png"),
                       ),
                     ),
                   ],
                 ),
+                SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: SizedBox(

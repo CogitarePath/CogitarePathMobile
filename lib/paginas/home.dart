@@ -1,3 +1,4 @@
+import 'package:agiroapp/classes/botaoText.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -35,17 +36,10 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             // ÍCONE CG FIXO NO CANTO SUPERIOR ESQUERDO E IMAGEM
             Stack(
+              alignment: AlignmentDirectional.center,
               children: <Widget>[
                 Image.asset("assets/HomeBackground2.png"),
-                Positioned(
-                  top: 20,
-                  left: 20,
-                  child: Image(
-                    width: 50,
-                    height: 50,
-                    image: AssetImage("assets/CG_Icon_White.png"),
-                  ),
-                ),
+                Image.asset("assets/CG_Icon_White.png"),
               ],
             ),
             Align(
@@ -73,35 +67,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                               SizedBox(height: 35),
-                              TextButton(
-                                onPressed: () {
-                                  setState(() {
-                                    mostrarSinopse = !mostrarSinopse;
-                                  });
-                                },
-                                style: TextButton.styleFrom(
-                                  foregroundColor: Color.fromARGB(
-                                    255,
-                                    31,
-                                    30,
-                                    34,
-                                  ),
-                                  backgroundColor: Color.fromARGB(
-                                    255,
-                                    31,
-                                    30,
-                                    34,
-                                  ),
-                                  elevation: null,
-                                ),
-                                child: Text(
-                                  "Sinopse",
-                                  style: TextStyle(
-                                    fontSize: 35,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
+                              Botaotext(text: "Sinopse", func: () {
+                                setState(() {
+                                   mostrarSinopse = !mostrarSinopse;
+                                });
+                              },),
                               AnimatedSwitcher(
                                 duration: Duration(milliseconds: 500),
                                 child: mostrarSinopse

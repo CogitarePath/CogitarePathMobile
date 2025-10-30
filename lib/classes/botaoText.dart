@@ -21,7 +21,7 @@ class _BotaotextState extends State<Botaotext> {
         backgroundColor: Color.fromARGB(255, 31, 30, 34),
         elevation: null,
       ),
-      child: Text(widget.text, style: TextStyle(fontSize: 35, color: Colors.white)),
+      child: Text(widget.text, style: TextStyle(fontSize: 30, color: Colors.white)),
     );
   }
 }
