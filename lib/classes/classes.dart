@@ -13,68 +13,6 @@ class Descricao {
   Descricao(this.nome, this.imagem, this.conteudo);
 }
 
-// CLASSE DESCRICAOPERSONAGEM - HERDA DE DESCRICAO
-class DescricaoPersonagem extends Descricao {
-  final String descAparencia;
-  final String personalidade;
-
-  DescricaoPersonagem(
-    nome,
-    imagem,
-    conteudo,
-    this.descAparencia,
-    this.personalidade,
-  ) : super(nome, imagem, conteudo);
-}
-
-List<DescricaoPersonagem> personagens = [
-  DescricaoPersonagem("Luiza Koga", "CG_LOGO.png", "Éh", "Dois", "Sim"),
-  DescricaoPersonagem("Luiza ASAADSSA", "CG_LOGO.png", "GDSA", "FA", "SiASDm"),
-];
-
-// CLASSE DESCRICAOMONSTRO - HERDA DE DESCRICAO
-class DescricaoMonstro extends Descricao {
-  final String descAparencia;
-  final String personalidade;
-
-  DescricaoMonstro(
-    nome,
-    imagem,
-    conteudo,
-    this.descAparencia,
-    this.personalidade,
-  ) : super(nome, imagem, conteudo);
-}
-
-// CLASSE DESCRICAOJOGABILIDADE - HERDA DE DESCRICAO
-
-class DescricaoJogabilidade extends Descricao {
-  final String mecanicas;
-  final String videos;
-
-  DescricaoJogabilidade(nome, imagem, conteudo, this.mecanicas, this.videos)
-    : super(nome, imagem, conteudo);
-}
-
-List<DescricaoJogabilidade> areas = [
-  DescricaoJogabilidade(
-    "Área Residencial",
-    "CG_LOGO.png",
-    "Uma área residencial",
-    "",
-    "",
-  ),
-  DescricaoJogabilidade(
-    "Área S",
-    "CG_Icon_White.png",
-    "Uma área residencial",
-    "",
-    "",
-  ),
-];
-
-// CLASSE DESCRICAONARRATIVA - HERDA DE DESCRICAO
-
 class DescricaoNarrativa extends Descricao {
   final String historia;
 

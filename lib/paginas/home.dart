@@ -34,7 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // ÍCONE CG FIXO NO CANTO SUPERIOR ESQUERDO E IMAGEM
             Stack(
               alignment: AlignmentDirectional.center,
               children: <Widget>[
@@ -49,46 +48,74 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0,
+                      vertical: 0,
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(
-                          width: 300,
-                          child: Column(
-                            spacing: 10,
-                            children: [
-                              Text(
-                                "Projeto A.G.I.R.O.",
-                                style: TextStyle(
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
+                        Column(
+                          spacing: 10,
+                          children: [
+                            Text(
+                              "Projeto A.G.I.R.O.",
+                              style: TextStyle(
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
-                              SizedBox(height: 35),
-                              Botaotext(text: "Sinopse", func: () {
+                            ),
+                            SizedBox(height: 25),
+                            Botaotext(
+                              text: "Sinopse",
+                              func: () {
                                 setState(() {
-                                   mostrarSinopse = !mostrarSinopse;
+                                  mostrarSinopse = !mostrarSinopse;
                                 });
-                              },),
-                              AnimatedSwitcher(
-                                duration: Duration(milliseconds: 500),
-                                child: mostrarSinopse
-                                    ? Text(
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.white,
+                              },
+                            ),
+                            AnimatedSwitcher(
+                              duration: Duration(milliseconds: 500),
+                              child: mostrarSinopse
+                                  ? Column(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
+                                                  ),
+                                                  "Classificação indicativa:  ",
+                                                ),
+                                                Image.asset(
+                                                  height: 50,
+                                                  width: 50,
+                                                  "classificacao.png")
+                                              ],
+                                            ),
+                                            SizedBox(height: 20,),
+                                            Text(
+                                              textAlign: TextAlign.justify,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white,
+                                              ),
+                                              "Luiza Koga viveu seus 22 anos de vida em um bunker, escondida de um perigo desconhecido. Após se tornar a única restante ali, se vê obrigada a sair e se arriscar na superfície, se deparando com um mundo devastado por uma espécie de lodo preto. Fazem 25 anos desde o dia em que essa substância destruiu, deprimiu e transformou o mundo em um cenário de uma tragédia. Este dia, conhecido como “O dia da Queda”, foi resultado de um experimento científico falho, da vontade de entender algo do qual não queria ser compreendido.\n"
+                                              "Presa na cidade de Boa Saudade, local de origem e o centro do problema, Luiza precisa descobrir a verdade por trás disso tudo e fugir com vida. Enfrentando em sua jornada, criaturas originadas a partir do lodo, formadas principalmente pelo medo de suas vítimas.\n"
+                                              "Explore a superfície, descubra o que aconteceu com a cidade de Boa Saudade e encontre uma saída. E o mais importante, não deixe que as ameaças te levem à insanidade.",
+                                            ),
+                                          ],
                                         ),
-                                        "Luiza Koga viveu seus 22 anos de vida em um bunker, escondida de um perigo desconhecido. Após se tornar a única restante ali, se vê obrigada a sair e se arriscar na superfície, se deparando com um mundo devastado por uma espécie de lodo preto. Fazem 25 anos desde o dia em que essa substância destruiu, deprimiu e transformou o mundo em um cenário de uma tragédia. Este dia, conhecido como “O dia da Queda”, foi resultado de um experimento científico falho, da vontade de entender algo do qual não queria ser compreendido.\n"
-                                        "Presa na cidade de Boa Saudade, local de origem e o centro do problema, Luiza precisa descobrir a verdade por trás disso tudo e fugir com vida. Enfrentando em sua jornada, criaturas originadas a partir do lodo, formadas principalmente pelo medo de suas vítimas.\n"
-                                        "Explore a superfície, descubra o que aconteceu com a cidade de Boa Saudade e encontre uma saída. E o mais importante, não deixe que as ameaças te levem à insanidade.",
-                                      )
-                                    : SizedBox.shrink(),
-                              ),
-                            ],
-                          ),
+                                      ],
+                                    )
+                                  : SizedBox.shrink(),
+                            ),
+                          ],
                         ),
                       ],
                     ),

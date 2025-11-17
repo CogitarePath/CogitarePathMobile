@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:agiroapp/classes/botaoText.dart';
-import 'package:agiroapp/classes/classes.dart';
+
+import 'package:agiroapp/classes/descricaoJogabilidade.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/services.dart';
+import 'package:video_player/video_player.dart';
 
 class Jogo extends StatelessWidget {
   const Jogo({super.key});
@@ -34,13 +39,68 @@ class _MyHomePageState extends State<MyHomePage> {
   bool showItens = false;
   bool showAreas = false;
 
+  List<DescricaoJogabilidade> listaJogabilidade = List.empty();
+  List<DescricaoJogabilidade> listaItens = List.empty();
+  List<DescricaoJogabilidade> listaArea = List.empty();
+
+  Future<void> readJsonJogabilidade() async {
+    final String response = await rootBundle.loadString(
+      "assets/Json/Jogabilidade.json",
+    );
+    Iterable data = await json.decode(response);
+    listaJogabilidade = List<DescricaoJogabilidade>.from(
+      data.map((model) => DescricaoJogabilidade.fromJson(model)),
+    );
+    setState(() {});
+  }
+
+  Future<void> readJsonItens() async {
+    final String response = await rootBundle.loadString(
+      "assets/Json/itens.json",
+    );
+    Iterable data = await json.decode(response);
+    listaItens = List<DescricaoJogabilidade>.from(
+      data.map((model) => DescricaoJogabilidade.fromJson(model)),
+    );
+    setState(() {
+      // list;
+    });
+  }
+
+  Future<void> readJsonArea() async {
+    final String response = await rootBundle.loadString(
+      "assets/Json/area.json",
+    );
+    Iterable data = await json.decode(response);
+    listaArea = List<DescricaoJogabilidade>.from(
+      data.map((model) => DescricaoJogabilidade.fromJson(model)),
+    );
+    setState(() {});
+  }
+  final VideoPlayerController _controller =
+      VideoPlayerController.networkUrl(
+          Uri.parse(
+            "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+          ),
+        );
+
+  @override
+  void initState() {
+    super.initState();
+
+    readJsonJogabilidade();
+    readJsonItens();
+    readJsonArea();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 31, 30, 34),
       body: SingleChildScrollView(
         child: Column(
-          spacing: 20,
           children: [
             Column(
               children: <Widget>[
@@ -50,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Image.asset("assets/JogoBackground2.png"),
                     Text(
                       style: TextStyle(
-                        fontSize: 35,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -67,9 +127,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 50),
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 0,
+                  ),
                   child: SizedBox(
                     child: Column(
                       children: [
@@ -87,14 +149,69 @@ class _MyHomePageState extends State<MyHomePage> {
                             AnimatedSwitcher(
                               duration: Duration(milliseconds: 500),
                               child: showJogabilidade
-                                  ? Text(
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                      ),
-                                      " "
-                                      "LOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUM.",
+                                  ? Column(
+                                      children: [
+                                        CarouselSlider(
+                                          options: CarouselOptions(
+                                            height: 400,
+                                            viewportFraction: 1,
+                                            enlargeCenterPage: true,
+                                            enableInfiniteScroll: true,
+                                            autoPlay: false,
+                                            onPageChanged: (index, reason) {
+                                              setState(() {
+                                                currentIndex = index;
+                                              });
+                                            },
+                                          ),
+                                          items: listaJogabilidade
+                                              .map(
+                                                (item) => Container(
+                                                  height: 500,
+                                                  width: 800,
+                                                  decoration: BoxDecoration(
+                                                    border: BoxBorder.all(
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                  // margin: EdgeInsets.all(0),
+                                                  child: Column(
+                                                    children: [
+                                                      AspectRatio(
+                                                        aspectRatio: 150,
+                                                        child: VideoPlayer(
+                                                          _controller,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        item.nome,
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        textAlign:
+                                                            TextAlign.justify,
+                                                        item.conteudo,
+                                                        style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                              .toList(),
+                                        ),
+                                        DotsIndicator(
+                                          dotsCount: listaJogabilidade.length,
+                                          position: currentIndex.toDouble(),
+                                        ),
+                                      ],
                                     )
                                   : SizedBox(height: 20),
                             ),
@@ -109,14 +226,70 @@ class _MyHomePageState extends State<MyHomePage> {
                             AnimatedSwitcher(
                               duration: Duration(milliseconds: 500),
                               child: showItens
-                                  ? Text(
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                      ),
-                                      " "
-                                      "LOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUMLOREIMPSUM.",
+                                  ? Column(
+                                      children: [
+                                        SizedBox(height: 10),
+                                        CarouselSlider(
+                                          options: CarouselOptions(
+                                            height: 400,
+                                            viewportFraction: 0.85,
+                                            enlargeCenterPage: true,
+                                            enableInfiniteScroll: true,
+                                            autoPlay: false,
+                                            onPageChanged: (index, reason) {
+                                              setState(() {
+                                                currentIndex = index;
+                                              });
+                                            },
+                                          ),
+                                          items: listaItens
+                                              .map(
+                                                (item) => Container(
+                                                  height: 500,
+                                                  width: 800,
+                                                  decoration: BoxDecoration(
+                                                    border: BoxBorder.all(
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                  // margin: EdgeInsets.all(0),
+                                                  child: Column(
+                                                    children: [
+                                                      Image.asset(
+                                                        width: 300,
+                                                        height: 300,
+                                                        // scale: 0.5,
+                                                        item.imagem,
+                                                      ),
+                                                      Text(
+                                                        item.nome,
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        textAlign:
+                                                            TextAlign.justify,
+                                                        item.conteudo,
+                                                        style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                              .toList(),
+                                        ),
+                                        DotsIndicator(
+                                          dotsCount: listaJogabilidade.length,
+                                          position: currentIndex.toDouble(),
+                                        ),
+                                      ],
                                     )
                                   : SizedBox(height: 20),
                             ),
@@ -134,61 +307,54 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: showAreas
                                   ? Column(
                                       children: [
+                                        SizedBox(height: 10),
                                         CarouselSlider(
                                           options: CarouselOptions(
-                                            viewportFraction: 0.6,
+                                            height: 400,
+                                            viewportFraction: 0.85,
                                             enlargeCenterPage: true,
                                             enableInfiniteScroll: true,
-                                            autoPlay: true,
+                                            autoPlay: false,
                                             onPageChanged: (index, reason) {
                                               setState(() {
                                                 currentIndex = index;
                                               });
                                             },
                                           ),
-                                          items: areas
+                                          items: listaArea
                                               .map(
                                                 (item) => Container(
-                                                  height: 800,
+                                                  height: 500,
                                                   width: 800,
                                                   decoration: BoxDecoration(
                                                     border: BoxBorder.all(
                                                       color: Colors.red,
                                                     ),
                                                   ),
-                                                  margin: EdgeInsets.all(8.0),
+                                                  // margin: EdgeInsets.all(0),
                                                   child: Column(
                                                     children: [
-                                                      Row(
-                                                        children: [
-                                                          Image.asset(
-                                                            width: 100,
-                                                            height: 100,
-                                                            scale: 2,
-                                                            item.imagem,
-                                                          ),
-                                                          SizedBox(
-                                                            width: 60,
-                                                            height: 100,
-                                                            child: Text(
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .justify,
-                                                              item.conteudo,
-                                                              style: TextStyle(
-                                                                fontSize: 10,
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
+                                                      Image.asset(
+                                                        width: 300,
+                                                        height: 300,
+                                                        // scale: 0.5,
+                                                        item.imagem,
                                                       ),
                                                       Text(
                                                         item.nome,
                                                         textAlign:
                                                             TextAlign.start,
                                                         style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        textAlign:
+                                                            TextAlign.justify,
+                                                        item.conteudo,
+                                                        style: TextStyle(
+                                                          fontSize: 13,
                                                           color: Colors.white,
                                                         ),
                                                       ),
@@ -199,7 +365,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               .toList(),
                                         ),
                                         DotsIndicator(
-                                          dotsCount: areas.length,
+                                          dotsCount: listaJogabilidade.length,
                                           position: currentIndex.toDouble(),
                                         ),
                                       ],

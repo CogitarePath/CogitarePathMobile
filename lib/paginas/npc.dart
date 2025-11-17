@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:agiroapp/classes/botaoText.dart';
-import 'package:agiroapp/classes/classes.dart';
+import 'package:agiroapp/classes/decricaoMonstros.dart';
+import 'package:agiroapp/classes/descricaoPersonagem.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/services.dart';
 
 class NPCPAGE extends StatelessWidget {
   const NPCPAGE({super.key});
@@ -32,6 +36,39 @@ class _NPCPageState extends State<NPCPage> {
 
   bool showPerson = false;
   bool showCreatures = false;
+
+  List<DescricaoMonstro> listaMonstro = List.empty();
+  List<DescricaoPersonagem> listaPersonagem = List.empty();
+
+  Future<void> readJsonMonstro() async {
+    final String response = await rootBundle.loadString("assets/Json/Monstros.json");
+    Iterable data = await json.decode(response);
+    listaMonstro = List<DescricaoMonstro>.from(
+      data.map((model) => DescricaoMonstro.fromJson(model)),
+    );
+    setState(() {
+      listaMonstro;
+    });
+  }
+
+  Future<void> readJsonPersonagem() async {
+    final String response = await rootBundle.loadString("assets/Json/Personagens.json");
+    Iterable data = await json.decode(response);
+    listaPersonagem = List<DescricaoPersonagem>.from(
+      data.map((model) => DescricaoPersonagem.fromJson(model)),
+    );
+    setState(() {
+      listaPersonagem;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    readJsonMonstro();
+    readJsonPersonagem();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +100,11 @@ class _NPCPageState extends State<NPCPage> {
                 ),
               ],
             ),
-            SizedBox(height: 50),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 0,
+              ),
               child: Column(
                 // Coluna do texto (serve para delimitar o espaço que o texto pode correr)
                 children: <Widget>[
@@ -97,7 +136,7 @@ class _NPCPageState extends State<NPCPage> {
                                         });
                                       },
                                     ),
-                                    items: areas
+                                    items: listaPersonagem
                                         .map(
                                           (item) => Container(
                                             height: 800,
@@ -147,7 +186,7 @@ class _NPCPageState extends State<NPCPage> {
                                         .toList(),
                                   ),
                                   DotsIndicator(
-                                    dotsCount: areas.length,
+                                    dotsCount: listaPersonagem.length,
                                     position: currentIndex.toDouble(),
                                   ),
                                 ],
@@ -179,7 +218,7 @@ class _NPCPageState extends State<NPCPage> {
                                         });
                                       },
                                     ),
-                                    items: areas
+                                    items: listaMonstro
                                         .map(
                                           (item) => Container(
                                             height: 800,
@@ -229,7 +268,7 @@ class _NPCPageState extends State<NPCPage> {
                                         .toList(),
                                   ),
                                   DotsIndicator(
-                                    dotsCount: areas.length,
+                                    dotsCount: listaMonstro.length,
                                     position: currentIndex.toDouble(),
                                   ),
                                 ],

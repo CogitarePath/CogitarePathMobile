@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     void iniciar() {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => SliderPage()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => SliderPage())); 
     }
 
     Timer(const Duration(seconds: 3), iniciar);

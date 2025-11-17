@@ -1,0 +1,16 @@
+[
+    {
+        "nome":"Luz UV",
+        "imagem":"imagemlegal.jpg",
+        "conteudo":"Uma lanterna com luz UV",
+        "mecanicas":"quando direcionado para um monstro o deixa paralisado pode ser alterado com o botão direito do mouse",
+        "videos":"assets/videos/olhosegato.mp4"
+    },
+    {
+         "nome":"Recarregar lanterna",
+        "imagem":"CG_LOGO.png",
+        "conteudo":"Uma área residencial",
+        "mecanicas":"",
+        "videos":""
+    }
+]

@@ -1,0 +1,16 @@
+[
+    {
+        "nome":"Lanterna",
+        "imagem":"imagemlanterna.jpg",
+        "conteudo":"Emite uma Luz para iluminar areas escuras",
+        "mecanicas":"",
+        "videos":""
+    },
+    {
+         "nome":"Área Residencial",
+        "imagem":"CG_LOGO.png",
+        "conteudo":"Uma área residencial",
+        "mecanicas":"",
+        "videos":""
+    }
+]

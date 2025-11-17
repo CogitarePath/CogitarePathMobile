@@ -10,6 +10,7 @@ environment:
 dependencies:
   dots_indicator: ^4.0.1
   loading_animation_widget: ^1.3.0
+  video_player: ^2.10.1
   flutter:
     sdk: flutter
 
@@ -28,4 +29,7 @@ flutter:
   uses-material-design: true
   assets: 
     - assets/
+    - assets/json/
+    - assets/videos/
+    - assets/videos/olhosegato.mp4
 
