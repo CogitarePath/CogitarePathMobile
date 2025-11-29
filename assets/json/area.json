@@ -1,15 +1,29 @@
 [
     {
         "nome":"Área Residencial",
-        "imagem":"imagemlegal.jpg",
-        "conteudo":"Uma área residencial",
+        "imagem":"assets/Arearesidencial.jpeg",
+        "conteudo":"A área inicial do jogo, onde se encontra a casa de Hideo Koga (E o bunker em seu quintal). Uma parte da cidade dedicada às residências dos trabalhadores e suas famílias, onde existem casas, algumas lojas e um departamento de segurança. Não existem muitas variações de criaturas ali, apenas as Sombras de Bruxa espreitam pelo local.",
         "mecanicas":"",
         "videos":""
     },
     {
-         "nome":"Área Residencial",
-        "imagem":"CG_LOGO.png",
-        "conteudo":"Uma área residencial",
+         "nome":"Parque",
+        "imagem":"assets/Areaparque.jpeg",
+        "conteudo":"Um parque de Boa Saudade, o qual a essa altura já foi tomado pela vegetação, se tornando semelhante à uma floresta. As grandes árvores fazem sombra, e a vegetação cobre ameaças menores. Um inimigo novo espreita Luiza nessa região, a Planta Olho de Gato, o qual se esconde e vigia sua vítima, para então revelar sua posição às Sombras de Bruxa. Na região menos afetada, existe uma cabana abandonada, onde aparentemente alguém já tentou viver. Mais a fundo, existe uma região do parque completamente tomada pelo Lodo, a parte mais perigosa da cidade.",
+        "mecanicas":"",
+        "videos":""
+    },
+    {
+         "nome":"Área Comercial",
+        "imagem":"assets/Areacomercial.jpeg",
+        "conteudo":"Uma área de Boa Saudade voltada para o comércio, com mercados, lojas e até alguns salões de beleza. Possui regiões com maior predominância do lodo, e outras com uma presença menor. Tanto as Sombras de Bruxa quanto as Plantas Olho de Gato espreitam essa área, a segunda com menor frequência do que no Parque.",
+        "mecanicas":"",
+        "videos":""
+    },
+    {
+         "nome":"Laboratório",
+        "imagem":"assets/LuzUV.jpeg",
+        "conteudo":"O local onde essa história começou, e onde a jornada de fuga termina, a única saída restante de Boa Saudade. O prédio encontra-se de pé após anos, devido à sua construção feita propositalmente para evitar que acidentes abalassem a estrutura. O local possui uma presença enorme de A.G.I.R.O., mas estranhamente não há nenhuma criatura no local. Vestígios do Projeto A.G.I.R.O. estão por toda parte, na destruição ou até mesmo em documentos. Numa sala em específico, está Yuri T. em sua forma consumida pelo lodo. Ele possui força para manipular levemente A.G.I.R.O., e encontra-se estático na mesma sala há décadas. Existe uma única saída do laboratório, a qual possui apenas uma pequena quantidade do lodo bloqueando-a.",
         "mecanicas":"",
         "videos":""
     }

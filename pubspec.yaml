@@ -31,5 +31,7 @@ flutter:
     - assets/
     - assets/json/
     - assets/videos/
-    - assets/videos/olhosegato.mp4
+    - assets/Personagens/
+    - assets/Criaturas/
+    - assets/itens/
 

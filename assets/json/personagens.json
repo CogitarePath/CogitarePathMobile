@@ -1,9 +1,23 @@
 [
     {
         "nome":"Luiza Koga",
-        "imagem":"CG_LOGO.png",
-        "conteudo":"Éh",
-        "descAparencia":"Dois",
-        "personalidade":"Sim"
+        "imagem":"Personagens/LuizaArte.png",
+        "conteudo":"viveu sua vida toda escondida em um bunker. Após ser a única restante, não vê outra escolha a não ser explorar o mundo lá fora.",
+        "descAparencia":"Luiza Uma jovem de 22 anos de idade",
+        "personalidade":"É curiosa, determinada, responsável e uma jovem de muita empatia."
+    },
+    {
+        "nome":"Yuri T.",
+        "imagem":"assets/Personagens/yurip.png",
+        "conteudo":"Um jovem cientista de 32 anos de idade. Apesar de ser um profissional com uma inteligência e raciocínio acima do comum, era um tanto otimista em relação a suas visões pro futuro. Tinha o sonho de inovar, criar algo que revolucionasse e ajudasse as pessoas.\n Liderou a equipe responsável pelo Projeto A.G.I.R.O. antes da Queda, também foi o responsável por ela. Após sua mente ser perturbada pelo lodo, seus sonhos foram esquecidos, e um objetivo egoísta de tentar trazer sua falecida amiga de volta o cegou. Yuri se conectou com A.G.I.R.O. como se fossem um só, e com isso, o lodo ganhou força para se expor. Agora possui uma aparência monstruosa, sem vontade alguma de continuar vivo, mas condenado a viver pela eternidade em frente à tragédia que criou.",
+        "descAparencia":"Luiza Uma jovem de 22 anos de idade",
+        "personalidade":""
+    },
+    {
+        "nome":"Fernando Sovaris",
+        "imagem":"assets/Personagens/Fernando.png",
+        "conteudo":"Um homem de meia idade, trabalhava no laboratório responsável pela Queda. No dia, teve sorte de estar fora da cidade, conseguindo sair com vida. Não possuía informações relevantes sobre o projeto, devido a sua confidencialidade. Por isso, não faz a menor ideia do que causou a Queda, sabia apenas que uma grande pesquisa estava sendo realizada no laboratório.Passou anos vagando pelos arredores de Boa Saudade, em regiões com menor presença de A.G.I.R.O. Aprendeu a lidar com as criaturas, evitando-as o máximo que pôde. Se encontra abrigado em um posto de gasolina em uma estrada próxima, onde guarda alimentos encontrados, recursos, e um rádio de comunicação. Tem o costume de patrulhar a região e se comunicar com vários outros rádios, todos listados por ele, recebendo retorno da maioria.",
+        "descAparencia":"Desconhecida",
+        "personalidade":""
     }
 ]

@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Navigator.push(context, MaterialPageRoute(builder: (context) => SliderPage())); 
     }
 
-    Timer(const Duration(seconds: 3), iniciar);
+    Timer(const Duration(seconds: 5), iniciar);
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 31, 30, 34),

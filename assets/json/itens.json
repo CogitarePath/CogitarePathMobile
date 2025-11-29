@@ -1,15 +1,29 @@
 [
     {
         "nome":"Lanterna",
-        "imagem":"imagemlanterna.jpg",
+        "imagem":"assets/itens/lateranalegal.png",
         "conteudo":"Emite uma Luz para iluminar areas escuras",
         "mecanicas":"",
         "videos":""
     },
     {
-         "nome":"Área Residencial",
-        "imagem":"CG_LOGO.png",
-        "conteudo":"Uma área residencial",
+         "nome":"Bateria",
+        "imagem":"assets/itens/BateriaLanterna.png",
+        "conteudo":"Recarregar a bateria da lanterna",
+        "mecanicas":"",
+        "videos":""
+    },
+    {
+         "nome":"Gasolina",
+        "imagem":"assets/itens/Gasolina.png",
+        "conteudo":"Feito para ligar o gerador",
+        "mecanicas":"",
+        "videos":""
+    },
+    {
+         "nome":"Chave",
+        "imagem":"assets/itens/chavesp.png",
+        "conteudo":"Abrir portas",
         "mecanicas":"",
         "videos":""
     }

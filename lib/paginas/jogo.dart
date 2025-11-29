@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/services.dart';
-import 'package:video_player/video_player.dart';
 
 class Jogo extends StatelessWidget {
   const Jogo({super.key});
@@ -33,7 +32,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int currentIndex = 0;
+  int currentIndexJogabilidade = 0;
+  int currentIndexItens = 0;
+  int currentIndexArea = 0;
 
   bool showJogabilidade = false;
   bool showItens = false;
@@ -77,12 +78,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
     setState(() {});
   }
-  final VideoPlayerController _controller =
-      VideoPlayerController.networkUrl(
-          Uri.parse(
-            "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
-          ),
-        );
+  // final VideoPlayerController _controller =
+  //     VideoPlayerController.networkUrl(
+  //         Uri.parse(
+  //           "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+  //         ),
+  //       );
 
   @override
   void initState() {
@@ -153,14 +154,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: [
                                         CarouselSlider(
                                           options: CarouselOptions(
-                                            height: 400,
+                                            height: 300,
                                             viewportFraction: 1,
                                             enlargeCenterPage: true,
                                             enableInfiniteScroll: true,
                                             autoPlay: false,
                                             onPageChanged: (index, reason) {
                                               setState(() {
-                                                currentIndex = index;
+                                                currentIndexJogabilidade = index;
                                               });
                                             },
                                           ),
@@ -175,33 +176,38 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     ),
                                                   ),
                                                   // margin: EdgeInsets.all(0),
-                                                  child: Column(
-                                                    children: [
-                                                      AspectRatio(
-                                                        aspectRatio: 150,
-                                                        child: VideoPlayer(
-                                                          _controller,
-                                                        ),
+                                                  child: SingleChildScrollView(
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(15.0),
+                                                      child: Column(
+                                                        children: [
+                                                          Image.asset(
+                                                            width: 300,
+                                                            height: 200,
+                                                            // scale: 0.5,
+                                                            item.imagem,
+                                                          ),
+                                                          Text(
+                                                            item.nome,
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: TextStyle(
+                                                              fontSize: 16,
+                                                              color: Colors.white,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            textAlign:
+                                                                TextAlign.justify,
+                                                            item.conteudo,
+                                                            style: TextStyle(
+                                                              fontSize: 13,
+                                                              color: Colors.white,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      Text(
-                                                        item.nome,
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style: TextStyle(
-                                                          fontSize: 16,
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        textAlign:
-                                                            TextAlign.justify,
-                                                        item.conteudo,
-                                                        style: TextStyle(
-                                                          fontSize: 13,
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
-                                                    ],
+                                                    ),
                                                   ),
                                                 ),
                                               )
@@ -209,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         ),
                                         DotsIndicator(
                                           dotsCount: listaJogabilidade.length,
-                                          position: currentIndex.toDouble(),
+                                          position: currentIndexJogabilidade.toDouble(),
                                         ),
                                       ],
                                     )
@@ -231,14 +237,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                         SizedBox(height: 10),
                                         CarouselSlider(
                                           options: CarouselOptions(
-                                            height: 400,
+                                            height: 300,
                                             viewportFraction: 0.85,
                                             enlargeCenterPage: true,
                                             enableInfiniteScroll: true,
                                             autoPlay: false,
                                             onPageChanged: (index, reason) {
                                               setState(() {
-                                                currentIndex = index;
+                                                currentIndexItens = index;
                                               });
                                             },
                                           ),
@@ -255,11 +261,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   // margin: EdgeInsets.all(0),
                                                   child: Column(
                                                     children: [
-                                                      Image.asset(
-                                                        width: 300,
-                                                        height: 300,
-                                                        // scale: 0.5,
-                                                        item.imagem,
+                                                      Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Image.asset(
+                                                          width: 300,
+                                                          height: 200,
+                                                          // scale: 0.5,
+                                                          item.imagem,
+                                                        ),
                                                       ),
                                                       Text(
                                                         item.nome,
@@ -286,8 +295,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               .toList(),
                                         ),
                                         DotsIndicator(
-                                          dotsCount: listaJogabilidade.length,
-                                          position: currentIndex.toDouble(),
+                                          dotsCount: listaItens.length,
+                                          position: currentIndexItens.toDouble(),
                                         ),
                                       ],
                                     )
@@ -310,14 +319,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                         SizedBox(height: 10),
                                         CarouselSlider(
                                           options: CarouselOptions(
-                                            height: 400,
+                                            height: 600,
                                             viewportFraction: 0.85,
                                             enlargeCenterPage: true,
                                             enableInfiniteScroll: true,
                                             autoPlay: false,
                                             onPageChanged: (index, reason) {
                                               setState(() {
-                                                currentIndex = index;
+                                                currentIndexArea = index;
                                               });
                                             },
                                           ),
@@ -332,41 +341,50 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     ),
                                                   ),
                                                   // margin: EdgeInsets.all(0),
-                                                  child: Column(
-                                                    children: [
-                                                      Image.asset(
-                                                        width: 300,
-                                                        height: 300,
-                                                        // scale: 0.5,
-                                                        item.imagem,
-                                                      ),
-                                                      Text(
-                                                        item.nome,
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style: TextStyle(
-                                                          fontSize: 16,
-                                                          color: Colors.white,
+                                                  child: SingleChildScrollView(
+                                                    child: Column(
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets.all(10.0),
+                                                          child: Image.asset(
+                                                            width: 250,
+                                                            height: 200,
+                                                            // scale: 0.5,
+                                                            item.imagem,
+                                                            fit:BoxFit.fill
+                                                          ),
                                                         ),
-                                                      ),
-                                                      Text(
-                                                        textAlign:
-                                                            TextAlign.justify,
-                                                        item.conteudo,
-                                                        style: TextStyle(
-                                                          fontSize: 13,
-                                                          color: Colors.white,
+                                                        Text(
+                                                          item.nome,
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: TextStyle(
+                                                            fontSize: 16,
+                                                            color: Colors.white,
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                        Padding(
+                                                          padding: const EdgeInsets.all(15.0),
+                                                          child: Text(
+                                                            textAlign:
+                                                                TextAlign.justify,
+                                                            item.conteudo,
+                                                            style: TextStyle(
+                                                              fontSize: 13,
+                                                              color: Colors.white,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               )
                                               .toList(),
                                         ),
                                         DotsIndicator(
-                                          dotsCount: listaJogabilidade.length,
-                                          position: currentIndex.toDouble(),
+                                          dotsCount: listaArea.length,
+                                          position: currentIndexArea.toDouble(),
                                         ),
                                       ],
                                     )

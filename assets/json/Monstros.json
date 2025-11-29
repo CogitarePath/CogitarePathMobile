@@ -1,9 +1,16 @@
 [
     {
         "nome":"Sombra de Bruxa",
-        "imagem":"sombra de brxa.img",
-        "conteudo":"dasdasdnsudgashycdvgshjgcvhgaxvchgxvcahgcfstdatrdcsfhgcdvgacas",
-        "descMonstro":"sddasdwqdewsdqdwqd",
-        "personalidade":"dqwdqdwdqwdwdsdq"
+        "imagem":"assets/Criaturas/SombradeBruxa.png",
+        "conteudo":"Persegue o player e suga a sanidade do mesmo",
+        "descMonstro":"Um ser com forma humana coberto com o A.G.I.R.O",
+        "personalidade":""
+    },
+    {
+        "nome":"Olho de gato",
+        "imagem":"assets/Criaturas/OlhodeGato.png",
+        "conteudo":"Quando detecta o player informa para os outros inimigos sua posição",
+        "descMonstro":"Uma planta com corpo de aranha, folhas caindo em suas pernas, e um olho acima do corpo",
+        "personalidade":""
     }
 ]

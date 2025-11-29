@@ -32,7 +32,8 @@ class NPCPage extends StatefulWidget {
 }
 
 class _NPCPageState extends State<NPCPage> {
-  int currentIndex = 0;
+  int currentIndexPersonagem = 0;
+  int currentIndexCriatura = 0;
 
   bool showPerson = false;
   bool showCreatures = false;
@@ -41,7 +42,9 @@ class _NPCPageState extends State<NPCPage> {
   List<DescricaoPersonagem> listaPersonagem = List.empty();
 
   Future<void> readJsonMonstro() async {
-    final String response = await rootBundle.loadString("assets/Json/Monstros.json");
+    final String response = await rootBundle.loadString(
+      "assets/Json/Monstros.json",
+    );
     Iterable data = await json.decode(response);
     listaMonstro = List<DescricaoMonstro>.from(
       data.map((model) => DescricaoMonstro.fromJson(model)),
@@ -52,7 +55,9 @@ class _NPCPageState extends State<NPCPage> {
   }
 
   Future<void> readJsonPersonagem() async {
-    final String response = await rootBundle.loadString("assets/Json/Personagens.json");
+    final String response = await rootBundle.loadString(
+      "assets/Json/Personagens.json",
+    );
     Iterable data = await json.decode(response);
     listaPersonagem = List<DescricaoPersonagem>.from(
       data.map((model) => DescricaoPersonagem.fromJson(model)),
@@ -126,13 +131,14 @@ class _NPCPageState extends State<NPCPage> {
                                 children: [
                                   CarouselSlider(
                                     options: CarouselOptions(
+                                      height: 750,
                                       viewportFraction: 1,
                                       enlargeCenterPage: true,
                                       enableInfiniteScroll: true,
-                                      autoPlay: true,
+                                      // autoPlay: true,
                                       onPageChanged: (index, reason) {
                                         setState(() {
-                                          currentIndex = index;
+                                          currentIndexPersonagem = index;
                                         });
                                       },
                                     ),
@@ -147,39 +153,79 @@ class _NPCPageState extends State<NPCPage> {
                                               ),
                                             ),
                                             margin: EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                Row(
+                                            child: SingleChildScrollView(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(
+                                                  15.0,
+                                                ),
+                                                child: Column(
                                                   children: [
+                                                    Text(
+                                                      item.nome,
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 25),
                                                     Image.asset(
-                                                      width: 100,
-                                                      height: 100,
+                                                      width: 250,
+                                                      height: 350,
                                                       scale: 2,
                                                       item.imagem,
+                                                      fit: BoxFit.fill,
                                                     ),
-                                                    SizedBox(
-                                                      width: 60,
-                                                      height: 100,
-                                                      child: Text(
-                                                        textAlign:
-                                                            TextAlign.justify,
-                                                        item.conteudo,
-                                                        style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: Colors.white,
-                                                        ),
+                                                    SizedBox(height: 25),
+                                                    Text(
+                                                      textAlign:
+                                                          TextAlign.justify,
+                                                      item.conteudo,
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 20),
+                                                    Text(
+                                                      "Aparencia",
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 15),
+                                                    Text(
+                                                      "${item.descAparencia}",
+                                                      textAlign:
+                                                          TextAlign.justify,
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 20),
+                                                    Text(
+                                                      "Personalidade",
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 15),
+                                                    Text(
+                                                      "${item.personalidade}",
+                                                      textAlign:
+                                                          TextAlign.justify,
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: Colors.white,
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-                                                Text(
-                                                  item.nome,
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ],
+                                              ),
                                             ),
                                           ),
                                         )
@@ -187,7 +233,7 @@ class _NPCPageState extends State<NPCPage> {
                                   ),
                                   DotsIndicator(
                                     dotsCount: listaPersonagem.length,
-                                    position: currentIndex.toDouble(),
+                                    position: currentIndexPersonagem.toDouble(),
                                   ),
                                 ],
                               )
@@ -208,13 +254,14 @@ class _NPCPageState extends State<NPCPage> {
                                 children: [
                                   CarouselSlider(
                                     options: CarouselOptions(
+                                      height: 600,
                                       viewportFraction: 1,
                                       enlargeCenterPage: true,
                                       enableInfiniteScroll: true,
                                       autoPlay: true,
                                       onPageChanged: (index, reason) {
                                         setState(() {
-                                          currentIndex = index;
+                                          currentIndexCriatura = index;
                                         });
                                       },
                                     ),
@@ -229,39 +276,43 @@ class _NPCPageState extends State<NPCPage> {
                                               ),
                                             ),
                                             margin: EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                Row(
+                                            child: SingleChildScrollView(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(
+                                                  15.0,
+                                                ),
+                                                child: Column(
                                                   children: [
+                                                    Text(
+                                                      item.nome,
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 25),
                                                     Image.asset(
-                                                      width: 100,
-                                                      height: 100,
+                                                      width: 250,
+                                                      height: 350,
                                                       scale: 2,
                                                       item.imagem,
+                                                      fit: BoxFit.fill,
                                                     ),
-                                                    SizedBox(
-                                                      width: 60,
-                                                      height: 100,
-                                                      child: Text(
-                                                        textAlign:
-                                                            TextAlign.justify,
-                                                        item.conteudo,
-                                                        style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: Colors.white,
-                                                        ),
+                                                    SizedBox(height: 25),
+                                                    Text(
+                                                      textAlign:
+                                                          TextAlign.justify,
+                                                      item.conteudo,
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Colors.white,
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-                                                Text(
-                                                  item.nome,
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ],
+                                              ),
                                             ),
                                           ),
                                         )
@@ -269,7 +320,7 @@ class _NPCPageState extends State<NPCPage> {
                                   ),
                                   DotsIndicator(
                                     dotsCount: listaMonstro.length,
-                                    position: currentIndex.toDouble(),
+                                    position: currentIndexCriatura.toDouble(),
                                   ),
                                 ],
                               )
