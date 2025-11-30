@@ -2,22 +2,22 @@
     {
         "nome":"Ligar lanterna",
         "imagem":"assets/Luzlanterna.jpeg",
-        "conteudo":"Liga a lanterna no modo luz de led",
-        "mecanicas":"Liga quando interage com o botão esquerdo do mouse usado para iluminar o ambiente",
+        "conteudo":"Liga a lanterna no modo luz de led.",
+        "mecanicas":"Liga quando interage com o botão esquerdo do mouse usado para iluminar o ambiente.",
         "videos":"assets/videos/olhosegato.mp4"
     },
     {
         "nome":"Luz UV",
         "imagem":"assets/LuzUV.jpeg",
-        "conteudo":"Uma lanterna com luz UV",
-        "mecanicas":"quando direcionado para um monstro o deixa paralisado pode ser alterado com o botão direito do mouse",
+        "conteudo":"Uma lanterna com luz UV.",
+        "mecanicas":"quando direcionado para um monstro o deixa paralisado pode ser alterado com o botão direito do mouse.",
         "videos":"assets/videos/olhosegato.mp4"
     },
     {
          "nome":"Recarregar lanterna",
         "imagem":"CG_LOGO.png",
-        "conteudo":"Uma área residencial",
-        "mecanicas":"",
+        "conteudo":"Recarrega a bateria da lanterna.",
+        "mecanicas":"Quando possui uma bateria pode recarregar a lanterna apertando a tecla (R).",
         "videos":""
     },
     {
