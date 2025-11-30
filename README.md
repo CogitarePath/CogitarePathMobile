@@ -4,6 +4,6 @@ O aplicativo mobile da Cogitare Path , foi criado com o intuito de informar o us
 
 ## Sumario
 1. [Home](https://github.com/CogitarePath/CogitarePathMobile/wiki)<br>
-2. [Protótipo]()<br>
+2. [Protótipo](https://github.com/CogitarePath/CogitarePathMobile/wiki/Prototipo)<br>
 3. [Criação da aplicação]()<br>
 4. [Codificação]()
